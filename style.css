@@ -212,7 +212,7 @@ body {
 
 /* Tela 1 com background da mecanica1 */
 #screen1 {
-    background-image: url('../images/mecanica1.png');
+    background-image: url('/QuizNamorados/images/mecanica1.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
