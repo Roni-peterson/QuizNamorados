@@ -237,14 +237,14 @@ body {
 #screen2,
 #screen3,
 #screen4{
-    background-image: url('../images/mecanica2.png');
+    background-image: url('images/mecanica2.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
 }
 #confirmationScreen {
-    background-image: url('../images/confirmacao.png');
+    background-image: url('images/confirmacao.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
