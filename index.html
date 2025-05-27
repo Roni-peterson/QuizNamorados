@@ -31,7 +31,7 @@
                     <p class="info-extra">Selecione até 2 itens para presentear.</p>
 
                     <div class="navigation">
-                        <button id="backToScreen1" class="btn secondary">Voltar</button>
+                        <button id="backToScreen1" class="btn secondary"> < Voltar  </button>
                         <button id="toScreen3" class="btn" disabled>PRÓXIMO ></button>
                     </div>
                 </div>
@@ -76,8 +76,9 @@
                 <p class="info-extra">Vamos para o último passo...</p>
 
                 <div class="navigation">
-                    <button id="backToScreen2" class="btn secondary">Voltar</button>
-                    <button id="toScreen4" class="btn" disabled>Avançar</button>
+                    <button id="backToScreen2" class="btn secondary">
+                        < Voltar </button>
+                            <button id="toScreen4" class="btn" disabled>Próximo > </button>
                 </div>
             </div>
         </div>
@@ -101,17 +102,39 @@
                         <a href="#" class="termo-destaque" id="openTermo">termo de adesão</a>
                     </label>
 
+                    <!-- Modal do PDF -->
                     <div id="pdfModal" class="pdf-modal">
                         <div class="pdf-modal-content">
                             <button id="closeModal" class="pdf-modal-close">×</button>
-                            <!-- PDF.js viewer container -->
-                            <div id="pdfjs-viewer" class="pdfViewer"></div>
+                            <!-- Troque o <embed> pelo <iframe> do PDF.js -->
+                            <iframe
+                                src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/Roni-peterson/QuizNamorados/main/docs/termo_adesao_cliente_premium_novo.pdf#disableDownload=true&disablePrint=true"
+                                width="100%" height="800" style="border:none"></iframe>
                         </div>
                     </div>
                 </div>
                 <div class="navigation">
-                    <button id="backToScreen3" class="btn secondary">Voltar</button>
-                    <button id="submitQuiz" class="btn">Enviar</button>
+                    <button id="backToScreen3" class="btn secondary">&lt; Voltar</button>
+                    <button id="submitQuiz" class="btn">Próximo &gt;</button>
+                </div>
+            </div>
+        </div>
+        <!-- Tela de Sugestão -->
+        <div id="suggestionScreen" class="screen">
+            <div class="content">
+                <h2>Agora é por nossa conta!</h2>
+                <p>Vamos fechar o presente e deixar na loja na data programada, você não precisa preocupar com mais
+                    nada.</p>
+                <p><strong>Aguarde o nosso contato até o dia 30/05 (Sexta-feira) por Whats App.</strong></p>
+                <br><br><br>
+                <p>Se quiser, pode deixar um recadinho para incluirmos...</p>
+                <div class="form-group">
+                    <textarea id="userMessage" class="form-control"
+                        placeholder="Digite um recado opcional..."></textarea>
+                </div>
+                <div class="navigation">
+                    <button id="backToScreen4" class="btn secondary">&lt; Voltar</button>
+                    <button id="finishQuiz" class="btn">Finalizar &gt;</button>
                 </div>
             </div>
         </div>
@@ -122,9 +145,7 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf_viewer.min.js"></script>
-    <!-- Seu script.js DEPOIS do PDF.js -->
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 
 </html>

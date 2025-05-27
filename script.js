@@ -1,13 +1,14 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Elementos das telas
     const screens = {
         screen1: document.getElementById('screen1'),
         screen2: document.getElementById('screen2'),
         screen3: document.getElementById('screen3'),
         screen4: document.getElementById('screen4'),
+        suggestionScreen: document.getElementById('suggestionScreen'),
         confirmationScreen: document.getElementById('confirmationScreen')
     };
-    
+
     // Botões de navegação
     const startQuizBtn = document.getElementById('startQuiz');
     const backToScreen1Btn = document.getElementById('backToScreen1');
@@ -16,29 +17,36 @@ document.addEventListener('DOMContentLoaded', function() {
     const toScreen4Btn = document.getElementById('toScreen4');
     const backToScreen3Btn = document.getElementById('backToScreen3');
     const submitQuizBtn = document.getElementById('submitQuiz');
-    
+    const backToScreen4Btn = document.getElementById('backToScreen4');
+    const finishQuizBtn = document.getElementById('finishQuiz');
+    const userMessageInput = document.getElementById('userMessage');
+
     // Elementos do formulário
     const productsContainer = document.getElementById('productsContainer');
     const citySelect = document.getElementById('city');
     const storeSelect = document.getElementById('store');
     const whatsappInput = document.getElementById('whatsapp');
-    // Checkbox do termo de adesão
     const termsCheckbox = document.getElementById('terms');
-    
-    // Dados dos produtos (pode ser substituído por uma chamada API se necessário)
+
+    // Modal Termo de Adesão
+    const openTermoBtn = document.getElementById('openTermo');
+    const pdfModal = document.getElementById('pdfModal');
+    const closeModalBtn = document.getElementById('closeModal');
+
+    // Dados dos produtos
     const products = [
-        { id: 1, name: 'Bepantriz 50mg Pomada 30g De R$27,37 Por R$ 9,39 ', image: 'images/produtos/produto1.webp' },
-        { id: 2, name: 'Produto 2', image: 'images/produtos/produto2.webp' },
-        { id: 3, name: 'Produto 3', image: 'images/produtos/produto3.webp' },
-        { id: 4, name: 'Produto 4', image: 'images/produtos/produto4.webp' },
-        { id: 5, name: 'Produto 5', image: 'images/produtos/produto5.webp' },
-        { id: 6, name: 'Produto 6', image: 'images/produtos/produto6.webp' },
-        { id: 7, name: 'Produto 7', image: 'images/produtos/produto7.webp' },
-        { id: 8, name: 'Produto 8', image: 'images/produtos/produto8.webp' }
+        { id: 1, name: 'Bepantriz 50mg Pomada 30g ', image: 'images/produtos/produto1.webp' },
+        { id: 2, name: 'Bepantriz 50mg Pomada 30g', image: 'images/produtos/produto2.webp' },
+        { id: 3, name: 'Bepantriz 50mg Pomada 30g', image: 'images/produtos/produto3.webp' },
+        { id: 4, name: 'Bepantriz 50mg Pomada 30g', image: 'images/produtos/produto4.webp' },
+        { id: 5, name: 'Bepantriz 50mg Pomada 30g', image: 'images/produtos/produto5.webp' },
+        { id: 6, name: 'Bepantriz 50mg Pomada 30g', image: 'images/produtos/produto6.webp' },
+        { id: 7, name: 'Bepantriz 50mg Pomada 30g', image: 'images/produtos/produto7.webp' },
+        { id: 8, name: 'Bepantriz 50mg Pomada 30g', image: 'images/produtos/produto8.webp' }
     ];
-    
+
     // Mapeamento de cidades e lojas
-     const storesByCity = {
+    const storesByCity = {
         "CARATINGA": [
             "LOJA ESPERA FELIZ - RUA DOM CARLOTO",
             "LOJA RAUL SOARES - RUA RAUL SOARES",
@@ -121,13 +129,14 @@ document.addEventListener('DOMContentLoaded', function() {
             "ALMENARA 2 - AVENIDA OLINDO DE MIRANDA"
         ]
     };
-    
-    // Variáveis para armazenar as seleções do usuário
+
+    // Variáveis do usuário
     let selectedProducts = [];
     let selectedCity = '';
     let selectedStore = '';
     let whatsapp = '';
-    
+    let userMessage = '';
+
     // Inicialização - Carrega os produtos
     function loadProducts() {
         productsContainer.innerHTML = '';
@@ -135,23 +144,22 @@ document.addEventListener('DOMContentLoaded', function() {
             const productCard = document.createElement('div');
             productCard.className = 'product-card';
             productCard.dataset.id = product.id;
-            
+
             productCard.innerHTML = `
                 <img src="${product.image}" alt="${product.name}">
                 <p>${product.name}</p>
             `;
-            
+
             productCard.addEventListener('click', () => toggleProductSelection(product.id, productCard));
             productsContainer.appendChild(productCard);
         });
     }
-    
+
     // Alternar seleção de produto
     function toggleProductSelection(productId, productCard) {
         const index = selectedProducts.indexOf(productId);
-        
+
         if (index === -1) {
-            // Verifica se já selecionou o máximo permitido
             if (selectedProducts.length >= 2) {
                 alert('Você só pode selecionar no máximo 2 produtos.');
                 return;
@@ -162,40 +170,52 @@ document.addEventListener('DOMContentLoaded', function() {
             selectedProducts.splice(index, 1);
             productCard.classList.remove('selected');
         }
-        
-        // Ativa/desativa o botão de avançar conforme a seleção
         toScreen3Btn.disabled = selectedProducts.length === 0;
     }
-    
+
     // Navegação entre telas
     function navigateTo(screenToShow) {
-        // Esconde todas as telas
         Object.values(screens).forEach(screen => {
             screen.classList.remove('active');
         });
-        
-        // Mostra a tela solicitada
         screens[screenToShow].classList.add('active');
     }
-    
+
     // Event listeners para navegação
-    startQuizBtn.addEventListener('click', () => navigateTo('screen2'));
-    backToScreen1Btn.addEventListener('click', () => navigateTo('screen1'));
-    toScreen3Btn.addEventListener('click', () => navigateTo('screen3'));
-    backToScreen2Btn.addEventListener('click', () => navigateTo('screen2'));
-    toScreen4Btn.addEventListener('click', () => navigateTo('screen4'));
-    backToScreen3Btn.addEventListener('click', () => navigateTo('screen3'));
-    
+    startQuizBtn && startQuizBtn.addEventListener('click', () => navigateTo('screen2'));
+    backToScreen1Btn && backToScreen1Btn.addEventListener('click', () => navigateTo('screen1'));
+    toScreen3Btn && toScreen3Btn.addEventListener('click', () => navigateTo('screen3'));
+    backToScreen2Btn && backToScreen2Btn.addEventListener('click', () => navigateTo('screen2'));
+    toScreen4Btn && toScreen4Btn.addEventListener('click', () => navigateTo('screen4'));
+    backToScreen3Btn && backToScreen3Btn.addEventListener('click', () => navigateTo('screen3'));
+    backToScreen4Btn && backToScreen4Btn.addEventListener('click', () => navigateTo('screen4'));
+
+    // Sugestão: Botão finalizar só está ativo na tela de sugestão
+    finishQuizBtn && finishQuizBtn.addEventListener('click', function () {
+        // Desabilita o botão imediatamente e muda o texto
+        finishQuizBtn.disabled = true;
+        finishQuizBtn.textContent = "Enviando...";
+        finishQuizBtn.classList.add('disabled');
+
+        userMessage = userMessageInput ? userMessageInput.value : '';
+        const formData = {
+            products: selectedProducts.join(', '),
+            city: selectedCity,
+            store: selectedStore,
+            whatsapp: whatsapp,
+            userMessage: userMessage,
+            timestamp: new Date().toISOString()
+        };
+        sendToAppSheet(formData);
+        // Não reabilite o botão, pois após o envio você vai para a tela de confirmação!
+    });
+
     // Configuração do seletor de cidades/lojas
-    citySelect.addEventListener('change', function() {
+    citySelect && citySelect.addEventListener('change', function () {
         const city = this.value;
         selectedCity = city;
-        
-        // Limpa e desabilita o seletor de lojas
         storeSelect.innerHTML = '<option value="" selected disabled>Selecione uma loja</option>';
         storeSelect.disabled = !city;
-        
-        // Preenche as lojas da cidade selecionada
         if (city) {
             storesByCity[city].forEach(store => {
                 const option = document.createElement('option');
@@ -203,44 +223,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 option.textContent = store;
                 storeSelect.appendChild(option);
             });
-            
             storeSelect.disabled = false;
         }
-        
-        // Atualiza o estado do botão de avançar
         toScreen4Btn.disabled = !city;
     });
-    
-    storeSelect.addEventListener('change', function() {
+
+    storeSelect && storeSelect.addEventListener('change', function () {
         selectedStore = this.value;
     });
-    
+
     // Validação do WhatsApp
-    whatsappInput.addEventListener('input', function() {
-        // Formata o número enquanto o usuário digita
+    whatsappInput && whatsappInput.addEventListener('input', function () {
         let value = this.value.replace(/\D/g, '');
-        
-        if (value.length > 11) {
-            value = value.substring(0, 11);
-        }
-        
+        if (value.length > 11) value = value.substring(0, 11);
         if (value.length > 0) {
             value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
-            if (value.length > 10) {
-                value = value.replace(/(\d)(\d{4})$/, '$1-$2');
-            }
+            if (value.length > 10) value = value.replace(/(\d)(\d{4})$/, '$1-$2');
         }
-        
         this.value = value;
         validateWhatsappAndTerms();
     });
 
     // Validação do termo de adesão
-    if (termsCheckbox) {
-        termsCheckbox.addEventListener('change', validateWhatsappAndTerms);
-    }
+    termsCheckbox && termsCheckbox.addEventListener('change', validateWhatsappAndTerms);
 
-    // Habilita o botão de envio apenas se ambos estiverem ok
     function validateWhatsappAndTerms() {
         const whatsappValid = whatsappInput.value.replace(/\D/g, '').length === 11;
         const termsChecked = termsCheckbox && termsCheckbox.checked;
@@ -250,152 +256,63 @@ document.addEventListener('DOMContentLoaded', function() {
     // Chama validação também ao carregar a página para garantir estado correto
     validateWhatsappAndTerms();
 
-    // Envio dos dados para o Google Sheets via AppSheet
-    submitQuizBtn.addEventListener('click', function() {
+    // Botão "Enviar" da tela 4: só navega para a tela de sugestão, não envia dados ainda!
+    submitQuizBtn && submitQuizBtn.addEventListener('click', function (e) {
+        e.preventDefault();
         whatsapp = whatsappInput.value;
-        
-        // Validação simples
         if (!whatsapp || whatsapp.replace(/\D/g, '').length < 11) {
             alert('Por favor, informe um número de WhatsApp válido.');
             return;
         }
-
-        // Validação do termo de adesão
         if (!termsCheckbox || !termsCheckbox.checked) {
             alert('Você deve concordar com o termo de adesão para enviar.');
             return;
         }
-
-        // Prepara os dados para envio
-        const formData = {
-            products: selectedProducts.join(', '),
-            city: selectedCity,
-            store: selectedStore,
-            whatsapp: whatsapp,
-            timestamp: new Date().toISOString()
-        };
-        
-        // Simulação de envio (substitua pela integração real com AppSheet)
-        console.log('Dados a serem enviados:', formData);
-        sendToAppSheet(formData);
-        
-        // Mostra tela de confirmação
-        navigateTo('confirmationScreen');
+        navigateTo('suggestionScreen');
     });
-    
-    // Função para enviar dados ao AppSheet (via Google Sheets)
-    function sendToAppSheet(data) {
-        const webhookUrl = 'https://script.google.com/macros/s/AKfycbwrVWk9jDcQw-y3EIkvvxXwvNWh4JebcFRfhPlBx8G0hTotHg1T2yqzq1UxkjwSDKQiuQ/exec';
 
-        // Monta os dados em formato x-www-form-urlencoded (como um form mesmo)
+    // Função para enviar dados ao AppSheet
+    function sendToAppSheet(data) {
+        const webhookUrl = 'https://script.google.com/macros/s/AKfycbxiRYejjQ6XB7pj46RePajI37Xcc2rAIMqciTy_lmkgGcm5bMdFfHiIwP1lhGUtuez6ew/exec';
         const formBody = Object.keys(data)
             .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
             .join('&');
-
         fetch(webhookUrl, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: formBody
         })
-        .then(res => {
-            // Você pode checar res.ok/res.status, mas como Apps Script retorna vazio, só navega para tela final
-            navigateTo('confirmationScreen');
-        })
-        .catch(err => {
-            alert("Erro ao enviar dados! Tente novamente.\n" + err);
-        });
+            .then(res => {
+                navigateTo('confirmationScreen');
+            })
+            .catch(err => {
+                alert("Erro ao enviar dados! Tente novamente.\n" + err);
+            });
     }
-    // Atualize o evento de envio para NÃO chamar form.submit
-    submitQuizBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        whatsapp = whatsappInput.value;
 
-        if (!whatsapp || whatsapp.replace(/\D/g, '').length < 11) {
-            alert('Por favor, informe um número de WhatsApp válido.');
-            return;
-        }
-        if (!termsCheckbox || !termsCheckbox.checked) {
-            alert('Você deve concordar com o termo de adesão para enviar.');
-            return;
-        }
+    // ===================== TERMO DE ADESÃO - MODAL IFRAME =====================
+    console.log("teste");
 
-        const formData = {
-            products: selectedProducts.join(', '),
-            city: selectedCity,
-            store: selectedStore,
-            whatsapp: whatsapp,
-            timestamp: new Date().toISOString()
+    if (openTermoBtn && pdfModal && closeModalBtn) {
+        openTermoBtn.onclick = function (e) {
+            e.preventDefault();
+            console.log('Clique no termo de adesão!');
+            pdfModal.classList.add('active');
+            document.body.classList.add('modal-open');
         };
-
-        sendToAppSheet(formData);
-
-        // NÃO chame navigateTo('confirmationScreen') aqui! Só depois do fetch OK!
-    });
-
-// ===================== TERMO DE ADESÃO - MODAL PDF.js =====================
-
-const PDF_URL = "https://www.dropbox.com/scl/fi/x5fqeeub9ao70166nt4xm/termo_adesao_cliente_premium_novo.pdf?rlkey=lvmvtqx1a5g2vpxrf7wpu3wei&st=m2fov8ge&raw=1";
-
-// Teste defensivo
-if (typeof window.pdfjsLib === "undefined") {
-  alert("PDF.js não foi carregado!");
-} else {
-  pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.worker.min.js";
-}
-
-function renderPDF(url, containerId) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = "";
-
-  pdfjsLib.getDocument(url).promise.then(pdf => {
-    for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-      pdf.getPage(pageNum).then(page => {
-        const viewport = page.getViewport({ scale: 1.2 });
-        const canvas = document.createElement("canvas");
-        container.appendChild(canvas);
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-        const context = canvas.getContext("2d");
-        page.render({
-          canvasContext: context,
-          viewport: viewport
-        });
-      });
+        closeModalBtn.onclick = function () {
+            pdfModal.classList.remove('active');
+            document.body.classList.remove('modal-open');
+        };
+        pdfModal.onclick = function (e) {
+            if (e.target === pdfModal) {
+                pdfModal.classList.remove('active');
+                document.body.classList.remove('modal-open');
+            }
+        };
+    } else {
+        console.warn('Elementos não encontrados:', openTermoBtn, pdfModal, closeModalBtn);
     }
-  }).catch(err => {
-    container.innerHTML = `<p style="color:red">Não foi possível abrir o PDF.<br>${err.message}</p>`;
-  });
-}
-
-const openTermoBtn = document.getElementById('openTermo');
-const pdfModal = document.getElementById('pdfModal');
-const pdfjsViewer = document.getElementById('pdfjs-viewer');
-const closeModalBtn = document.getElementById('closeModal');
-
-if (openTermoBtn && pdfModal && pdfjsViewer && closeModalBtn) {
-  openTermoBtn.onclick = function(e) {
-    e.preventDefault();
-    pdfModal.classList.add('active');
-    document.body.classList.add('modal-open'); // BLOQUEIA SCROLL DO BODY
-    renderPDF(PDF_URL, 'pdfjs-viewer');
-  };
-  closeModalBtn.onclick = function() {
-    pdfModal.classList.remove('active');
-    document.body.classList.remove('modal-open'); // LIBERA SCROLL DO BODY
-    pdfjsViewer.innerHTML = "";
-  };
-  pdfModal.onclick = function(e) {
-    if (e.target === this) {
-      pdfModal.classList.remove('active');
-      document.body.classList.remove('modal-open'); // LIBERA SCROLL DO BODY
-      pdfjsViewer.innerHTML = "";
-    }
-  };
-}
-
-
     // Inicializa o quiz
     loadProducts();
 });
