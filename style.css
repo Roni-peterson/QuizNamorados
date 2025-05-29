@@ -789,9 +789,10 @@ body.modal-open {
 
     #screen1 #startQuiz {
         width: 300px;
-        font-size: 26px;
+        height: 40px;
+        font-size: 22px;
         position: fixed;
-        bottom: 60px;
+        bottom: 40px;
         left: 50%;
         transform: translateX(-50%);
     }
