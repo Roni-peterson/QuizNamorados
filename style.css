@@ -790,7 +790,7 @@ body.modal-open {
     #screen1 #startQuiz {
         width: 300px;
         height: 40px;
-        font-size: 22px;
+        font-size: 26px;
         position: fixed;
         bottom: 40px;
         left: 50%;
@@ -823,7 +823,7 @@ body.modal-open {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
         justify-content: center;
-        margin-top: 350px;
+        margin-top: 350px !important;
     }
 
     .product-card {
