@@ -795,6 +795,7 @@ body.modal-open {
         bottom: 40px;
         left: 50%;
         transform: translateX(-50%);
+        padding: 0;
     }
 
     #screen2 {
@@ -847,10 +848,14 @@ body.modal-open {
 
     #screen2 #toScreen3 {
         width: 300px;
+        height: 40px;
         margin-bottom: 50px;
+        padding: 0;
     }
     #screen2 #backToScreen1 {
         width: 300px;
+        height: 40px;
+        padding: 0;
     }
 
 
