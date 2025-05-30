@@ -35,16 +35,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Dados dos produtos
     const products = [
-        { id: 1, name: 'Bepantriz 50mg Pomada 30g ', image: 'images/produtos/produto1.webp' },
-        { id: 2, name: 'Bepantriz 50mg Pomada 30g', image: 'images/produtos/produto2.webp' },
-        { id: 3, name: 'Bepantriz 50mg Pomada 30g', image: 'images/produtos/produto3.webp' },
-        { id: 4, name: 'Bepantriz 50mg Pomada 30g', image: 'images/produtos/produto4.webp' },
-        { id: 5, name: 'Bepantriz 50mg Pomada 30g', image: 'images/produtos/produto5.webp' },
-        { id: 6, name: 'Bepantriz 50mg Pomada 30g', image: 'images/produtos/produto6.webp' },
-        { id: 7, name: 'Bepantriz 50mg Pomada 30g', image: 'images/produtos/produto7.webp' },
-        { id: 8, name: 'Bepantriz 50mg Pomada 30g', image: 'images/produtos/produto8.webp' }
+        { id: 1, desc: 'Kit Eudora Eau de Parfum 35ml + Hidratante Corporal', priceFrom: '183,99', priceTo: '149,00', image: 'images/produtos/produto1.png' },
+        { id: 2, desc: 'Perfume Paris Elysees Billion 100ml Exclusive Edition', priceFrom: ' 89,90 ', priceTo: ' 75,90 ', image: 'images/produtos/produto2.png' },
+        { id: 3, desc: 'Mon Bourjois La Formidable Eau de Parfum', priceFrom: '114,00', priceTo: '95,90', image: 'images/produtos/produto3.png' },
+        { id: 4, desc: 'Aparador de pelos WAHL Multigroomer Trim Total', priceFrom: '199,90', priceTo: '179,90', image: 'images/produtos/produto4.png' },
+        { id: 5, desc: 'Kit Eudora Velvet Authentic 100ml', priceFrom: '162,99', priceTo: '129,90', image: 'images/produtos/produto5.png' },
+        { id: 6, desc: 'David Beckham Bold Instinct Eau de Parfum', priceFrom: '155,01', priceTo: '129,00', image: 'images/produtos/produto6.png' },
+        { id: 7, desc: 'Copo Term Stanley 519ml Quencher', priceFrom: '269,90', priceTo: '229,00', image: 'images/produtos/produto7.png' },
+        { id: 8, desc: 'Secador Gama New Lumina Therapy Biv', priceFrom: '471,99', priceTo: '399,00', image: 'images/produtos/produto8.png' }
     ];
-
     // Mapeamento de cidades e lojas
     const storesByCity = {
         "CARATINGA": [
@@ -140,18 +139,18 @@ document.addEventListener('DOMContentLoaded', function () {
     // Inicialização - Carrega os produtos
     function loadProducts() {
         productsContainer.innerHTML = '';
-        products.forEach(product => {
-            const productCard = document.createElement('div');
-            productCard.className = 'product-card';
-            productCard.dataset.id = product.id;
-
-            productCard.innerHTML = `
-                <img src="${product.image}" alt="${product.name}">
-                <p>${product.name}</p>
+        products.forEach(prod => {
+            const productHtml = `
+                <div class="product-card">
+                    <img src="${prod.image}" alt="${prod.desc}">
+                    <p class="product-desc">${prod.desc}</p>
+                    <div class="product-prices">
+                        <span class="price-de">de R$ ${prod.priceFrom}</span>
+                        <span class="price-por">por R$ ${prod.priceTo}</span>
+                    </div>
+                </div>
             `;
-
-            productCard.addEventListener('click', () => toggleProductSelection(product.id, productCard));
-            productsContainer.appendChild(productCard);
+            productsContainer.innerHTML += productHtml;
         });
     }
 
