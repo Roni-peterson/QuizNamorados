@@ -903,12 +903,11 @@ body.modal-open {
         padding: 0 !important;
         left: 0 !important;
         right: 0 !important;
-        margin-top: 100px !important;
+        margin-top: 50px !important;
         position: fixed;
     }
-
     #screen3 .info-extra {
-        padding-top: 20px !important;
+        padding-top: 10px !important;
 
     }
 
@@ -927,6 +926,7 @@ body.modal-open {
     }
 
     #screen3 .content h2 {
+        margin-top: 0 !important;
         font-size: 32px;
     }
 
@@ -934,7 +934,10 @@ body.modal-open {
 
         font-size: 20px;
         margin-bottom: 50px !important;
+    }
 
+    #screen3 .form-group--date{
+        margin-bottom: 40px !important;
     }
 
 
@@ -968,12 +971,13 @@ body.modal-open {
         padding: 0 !important;
         left: 0 !important;
         right: 0 !important;
-        margin-top: 100px !important;
+        margin-top: 80px !important;
         position: fixed;
     }
 
     #screen4 .content h2 {
         margin-top: 30px !important;
+        font-size: 45px !important;
     }
 
     #screen4 .pdf-modal {
@@ -1019,6 +1023,9 @@ body.modal-open {
         margin-bottom: 5px !important;
         /* Menor para mobile */
     }
+    #screen4 .navigation{
+        margin-top: 15px !important;
+    }
 
     #suggestionScreen {
         width: 100vw;
@@ -1046,21 +1053,21 @@ body.modal-open {
     }
 
     #suggestionScreen h2{
-        font-size: 30px !important;
-        margin-top: 50px !important;
+        font-size: 40px !important;
+        margin-top: 70px !important;
     }
     #suggestionScreen .info-extra{
-        font-size: 20px !important;
+        font-size: 15px !important;
         margin-top: 10px !important;
         margin-bottom: 10px !important;
     }
     #suggestionScreen .informe{
-        font-size: 18px !important;
+        font-size: 15px !important;
         margin-top: 10px !important;
         margin-bottom: 0 !important;
     }
     #suggestionScreen .informes{
-        font-size: 22px !important;
+        font-size: 18px !important;
         margin-top: 0 !important;
     }
     #suggestionScreen .navigation{
