@@ -913,7 +913,7 @@ body.modal-open {
     }
 
     #screen3 .navigation {
-        flex-direction: column;
+        flex-direction: row;
     }
 
     #screen3 #backToScreen2 {
