@@ -846,7 +846,7 @@ body.modal-open {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
         justify-content: center;
-        margin-top: 350px !important;
+        margin-top: 700px !important;
     }
 
     .product-card {
@@ -856,6 +856,7 @@ body.modal-open {
 
     .product-card img {
         width: 150px;
+        height: 150px;
     }
 
     #screen2 .info-extra {
