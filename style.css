@@ -846,7 +846,7 @@ body.modal-open {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
         justify-content: center;
-        margin-top: 700px !important;
+        margin-top: 1000px !important;
     }
 
     .product-card {
