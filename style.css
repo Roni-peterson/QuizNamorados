@@ -906,6 +906,7 @@ body.modal-open {
         margin-top: 50px !important;
         position: fixed;
     }
+
     #screen3 .info-extra {
         padding-top: 10px !important;
 
@@ -913,6 +914,10 @@ body.modal-open {
 
     #screen3 .navigation {
         flex-direction: row;
+    }
+
+    #screen3 .navigation .btn {
+        font-size: 20px;
     }
 
     #screen3 #backToScreen2 {
@@ -936,7 +941,7 @@ body.modal-open {
         margin-bottom: 50px !important;
     }
 
-    #screen3 .form-group--date{
+    #screen3 .form-group--date {
         margin-bottom: 40px !important;
     }
 
@@ -971,23 +976,29 @@ body.modal-open {
         padding: 0 !important;
         left: 0 !important;
         right: 0 !important;
-        margin-top: 80px !important;
+        margin-top: 70px !important;
         position: fixed;
     }
 
     #screen4 .content h2 {
-        margin-top: 30px !important;
-        font-size: 45px !important;
+        margin-top: 10px !important;
+        font-size: 25px !important;
+    }
+
+    #screen4 .content h3 {
+        font-size: 20px !important;
     }
 
     #screen4 .pdf-modal {
         margin-top: 0 !important;
     }
-    #screen4 .subtitle{
+
+    #screen4 .subtitle {
         margin-bottom: 2px !important;
+        font-size: 22px !important;
     }
 
-    #screen4 .info-extra{
+    #screen4 .info-extra {
         margin-top: 2px !important;
     }
 
@@ -1023,8 +1034,13 @@ body.modal-open {
         margin-bottom: 5px !important;
         /* Menor para mobile */
     }
-    #screen4 .navigation{
+
+    #screen4 .navigation {
         margin-top: 15px !important;
+    }
+
+    #screen4 .navigation .btn {
+        font-size: 20px;
     }
 
     #suggestionScreen {
@@ -1048,33 +1064,47 @@ body.modal-open {
         padding: 0 !important;
         left: 0 !important;
         right: 0 !important;
-        margin-top: 100px !important;
+        margin-top: 70px !important;
         position: fixed;
     }
 
-    #suggestionScreen h2{
-        font-size: 40px !important;
-        margin-top: 70px !important;
-    }
-    #suggestionScreen .info-extra{
-        font-size: 15px !important;
+    #suggestionScreen h2 {
+        font-size: 25px !important;
         margin-top: 10px !important;
+    }
+
+    #suggestionScreen .info-extra {
+        font-size: 15px !important;
+        margin-top: 5px !important;
         margin-bottom: 10px !important;
     }
-    #suggestionScreen .informe{
+
+    #suggestionScreen .informe {
         font-size: 15px !important;
         margin-top: 10px !important;
         margin-bottom: 0 !important;
     }
-    #suggestionScreen .informes{
+
+    #suggestionScreen .informes {
         font-size: 17px !important;
         margin-top: 0 !important;
     }
-    #suggestionScreen .navigation{
+
+    #suggestionScreen .navigation {
         margin-top: 0 !important;
     }
-    #suggestionScreen .form-group{
+    #suggestionScreen .navigation .btn {
+        font-size: 20px;
+    }
+
+    #suggestionScreen .form-group {
         margin-bottom: 25px !important;
     }
+
+    #suggestionScreen textarea.form-control {
+        width: 700px;
+        height: 80px;
+    }
+
 
 }
