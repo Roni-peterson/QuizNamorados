@@ -233,6 +233,7 @@ body {
 
 /* 9. Telas secundárias com fundo especial */
 #suggestionScreen,
+#screenChocolates,
 #screen2,
 #screen3,
 #screen4 {
@@ -327,6 +328,140 @@ body {
     background-color: #d10a35;
     color: white;
 }
+
+#screenChocolates .content {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 50px;
+    background-color: transparent;
+}
+
+#screenChocolates .content-inner {
+    width: 57%;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centraliza os elementos dentro da coluna */
+}
+
+#screenChocolates h3 {
+    font-size: 46px;
+    color: white;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    /* Reduza para aproximar dos botões */
+    text-align: center;
+    font-family: 'FarmIndianaRound', Arial, sans-serif;
+    font-weight: bold;
+}
+
+#screenChocolates .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    gap: 10px;
+    align-items: center;
+}
+
+#screenChocolates .product-card {
+    border: 2px solid white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 12px;
+    background-color: white;
+}
+
+#screenChocolates .product-card:hover {
+    border-color: #d10a35;
+}
+
+#screenChocolates .product-card.selected {
+    border-color: #d10a35;
+    background-color: #d10a35;
+}
+
+#screenChocolates .product-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+#screenChocolates .product-desc {
+    font-family: 'FarmIndianaRound', Arial, sans-serif;
+    font-weight: normal;
+    margin: 10px 0 6px 0;
+    font-size: 15px;
+    color: #222;
+}
+
+#screenChocolates .product-prices {
+    margin-top: 2px;
+}
+
+#screenChocolates .price-de {
+    color: #888;
+    text-decoration: line-through;
+    margin-right: 10px;
+    font-family: 'FarmIndianaRound', Arial, sans-serif;
+    font-weight: bold;
+}
+
+#screenChocolates .price-por {
+    color: black;
+    font-size: 20px;
+    background: #fff3f5;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-family: 'FarmIndianaRound', Arial, sans-serif;
+    font-weight: bold;
+}
+
+#screenChocolates .info-extra {
+    font-size: 26px;
+    color: white;
+    margin-top: 70px !important;
+    margin-bottom: 8px;
+    /* Reduza para aproximar dos botões */
+    text-align: center;
+    font-family: 'FarmIndianaRound', Arial, sans-serif;
+    font-weight: bold;
+}
+
+#screenChocolates .navigation {
+    display: flex;
+    gap: 16px;
+    /* Espaço entre os botões */
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+    margin-top: 0;
+    /* Reduza ou zere para aproximar do texto */
+}
+
+#screenChocolates .btn {
+    padding: 12px 25px;
+    background-color: white;
+    color: #d10a35;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 26px;
+    transition: background-color 0.3s ease;
+    font-family: 'FarmIndianaRound', Arial, sans-serif;
+    font-weight: bold;
+    /* Removido position: fixed, left, transform, padding-top */
+    margin-top: 0;
+    align-self: center;
+}
+
+#screenChocolates .btn:hover {
+    background-color: #d10a35;
+    color: white;
+}
+
 
 #screen3 .content {
     width: 60vw;
@@ -794,6 +929,7 @@ body.modal-open {
     #screen2,
     #screen3,
     #screen4,
+    #screenChocolates,
     #suggestionScreen {
         background-image: url('images/mecanica2mobile.png') !important;
     }
@@ -880,6 +1016,71 @@ body.modal-open {
         width: 300px;
         height: 40px;
         padding: 0;
+    }
+
+    #screenChocolates {
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        overflow: auto;
+    }
+
+    #screenChocolates .content {
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        background-color: transparent;
+    }
+
+    #screenChocolates h3 {
+        margin-top: 200px !important;
+        font-size: 20px !important;
+        width: 100%;
+        max-width: none;
+        display: block;
+        text-align: center;
+        word-spacing: normal;
+        box-sizing: border-box;
+        font-family: 'FarmIndianaRound', Arial, sans-serif;
+        font-weight: bold;
+    }
+
+    #screenChocolates .products-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 10px;
+        justify-content: center;
+        margin-top: 20px !important;
+    }
+
+    #screenChocolates .product-card {
+        border: 2px solid white;
+        border-radius: 8px;
+    }
+
+    #screenChocolates .product-card img {
+        width: 150px;
+        height: 150px;
+    }
+
+    #screenChocolates .info-extra {
+        font-size: 18px !important;
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+    }
+
+    #screenChocolates .navigation {
+        flex-direction: row;
+    }
+
+    #screenChocolates .navigation .btn {
+        font-size: 20px;
+        width: 150px;
+        margin-bottom: 30px;
     }
 
     #screen3 {
@@ -1035,6 +1236,11 @@ body.modal-open {
         /* Menor para mobile */
     }
 
+    #screen4 .pdf-modal {
+        right: 20px;
+        left: 20px;
+    }
+
     #screen4 .navigation {
         margin-top: 15px !important;
     }
@@ -1093,6 +1299,7 @@ body.modal-open {
     #suggestionScreen .navigation {
         margin-top: 0 !important;
     }
+
     #suggestionScreen .navigation .btn {
         font-size: 20px;
     }

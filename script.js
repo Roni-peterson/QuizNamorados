@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const screens = {
         screen1: document.getElementById('screen1'),
         screen2: document.getElementById('screen2'),
+        screenChocolates: document.getElementById('screenChocolates'),
         screen3: document.getElementById('screen3'),
         screen4: document.getElementById('screen4'),
         suggestionScreen: document.getElementById('suggestionScreen'),
@@ -12,8 +13,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // Botões de navegação
     const startQuizBtn = document.getElementById('startQuiz');
     const backToScreen1Btn = document.getElementById('backToScreen1');
-    const toScreen3Btn = document.getElementById('toScreen3');
+    const toScreenChocolatesBtn = document.getElementById('toScreenChocolates');
     const backToScreen2Btn = document.getElementById('backToScreen2');
+    const toScreen3Btn = document.getElementById('toScreen3');
+    const backToScreenChocolatesBtn = document.getElementById('backToScreenChocolates');
     const toScreen4Btn = document.getElementById('toScreen4');
     const backToScreen3Btn = document.getElementById('backToScreen3');
     const submitQuizBtn = document.getElementById('submitQuiz');
@@ -23,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Elementos do formulário
     const productsContainer = document.getElementById('productsContainer');
+    const chocolatesContainer = document.getElementById('chocolatesContainer');
     const citySelect = document.getElementById('city');
     const storeSelect = document.getElementById('store');
     const whatsappInput = document.getElementById('whatsapp');
@@ -44,6 +48,31 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: 7, desc: 'Copo Term Stanley 519ml Quencher', priceFrom: '269,90', priceTo: '229,00', image: 'images/produtos/produto7.png' },
         { id: 8, desc: 'Secador Gama New Lumina Therapy Biv', priceFrom: '471,99', priceTo: '399,00', image: 'images/produtos/produto8.png' }
     ];
+
+    const chocolates = [
+        {
+            id: 101,
+            desc: 'Ferrero Rocher Chocolate ao Leite 8 un',
+            priceFrom: '28,59',
+            priceTo: '21,99',
+            image: 'images/chocolate1.png'
+        },
+        {
+            id: 102,
+            desc: 'CX Sonho de Valsa e Ouro Branco Sort 220g',
+            priceFrom: '16,99',
+            priceTo: '13,99',
+            image: 'images/chocolate2.png'
+        },
+        {
+            id: 103,
+            desc: 'Bombom Ferreiro Raffaello 9 Unidades',
+            priceFrom: '22,69',
+            priceTo: '19,99',
+            image: 'images/chocolate3.png'
+        }
+    ];
+
     // Mapeamento de cidades e lojas
     const storesByCity = {
         "CARATINGA": [
@@ -129,8 +158,9 @@ document.addEventListener('DOMContentLoaded', function () {
         ]
     };
 
-    // Variáveis do usuário
+    // Variáveis de seleção
     let selectedProducts = [];
+    let selectedChocolates = [];
     let selectedCity = '';
     let selectedStore = '';
     let whatsapp = '';
@@ -139,24 +169,49 @@ document.addEventListener('DOMContentLoaded', function () {
     // Inicialização - Carrega os produtos
     function loadProducts() {
         productsContainer.innerHTML = '';
+        selectedProducts = [];
         products.forEach(prod => {
             const productCard = document.createElement('div');
             productCard.className = 'product-card';
             productCard.innerHTML = `
-            <img src="${prod.image}" alt="${prod.desc}">
-            <p class="product-desc">${prod.desc}</p>
-            <div class="product-prices">
-                <span class="price-de">de R$ ${prod.priceFrom}</span>
-                <span class="price-por">por R$ ${prod.priceTo}</span>
-            </div>
-        `;
+                <img src="${prod.image}" alt="${prod.desc}">
+                <p class="product-desc">${prod.desc}</p>
+                <div class="product-prices">
+                    <span class="price-de">de R$ ${prod.priceFrom}</span>
+                    <span class="price-por">por R$ ${prod.priceTo}</span>
+                </div>
+            `;
             productCard.addEventListener('click', function () {
                 toggleProductSelection(prod.id, productCard);
             });
             productsContainer.appendChild(productCard);
         });
-        // Desabilitar botão até seleção
-        toScreen3Btn.disabled = true;
+        toScreenChocolatesBtn.disabled = true;
+    }
+    function loadChocolates() {
+        if (!chocolatesContainer) return;
+        chocolatesContainer.innerHTML = '';
+        chocolates.forEach(choc => {
+            const chocCard = document.createElement('div');
+            chocCard.className = 'product-card';
+            chocCard.innerHTML = `
+            <img src="${choc.image}" alt="${choc.desc}">
+            <p class="product-desc">${choc.desc}</p>
+            <div class="product-prices">
+                <span class="price-de">de R$ ${choc.priceFrom}</span>
+                <span class="price-por">por R$ ${choc.priceTo}</span>
+            </div>
+        `;
+            chocCard.addEventListener('click', function () {
+                toggleChocolateSelection(choc.id, chocCard);
+            });
+            // Marcar selecionado se já selecionado
+            if (selectedChocolates.includes(choc.id)) {
+                chocCard.classList.add('selected');
+            }
+            chocolatesContainer.appendChild(chocCard);
+        });
+        toScreen3Btn.disabled = false;
     }
 
     // Alternar seleção de produto
@@ -174,8 +229,29 @@ document.addEventListener('DOMContentLoaded', function () {
             selectedProducts.splice(index, 1);
             productCard.classList.remove('selected');
         }
-        // Habilita botão só se há 1 ou 2 selecionados
-        toScreen3Btn.disabled = !(selectedProducts.length >= 1 && selectedProducts.length <= 2);
+        toScreenChocolatesBtn.disabled = !(selectedProducts.length >= 1 && selectedProducts.length <= 2);
+    }
+    // Alternar seleção de chocolate
+    function toggleChocolateSelection(chocolateId, chocCard) {
+        // Se já está selecionado, desmarca
+        const idx = selectedChocolates.indexOf(chocolateId);
+        if (idx !== -1) {
+            selectedChocolates.splice(idx, 1);
+            chocCard.classList.remove('selected');
+            return;
+        }
+
+        // Se já tem 1 selecionado, desmarca todos antes de marcar o novo
+        if (selectedChocolates.length >= 1) {
+            // Desmarcar visualmente todos os chocolates
+            const allChocCards = chocolatesContainer.querySelectorAll('.product-card.selected');
+            allChocCards.forEach(card => card.classList.remove('selected'));
+            selectedChocolates = [];
+        }
+
+        // Marca o novo chocolate
+        selectedChocolates.push(chocolateId);
+        chocCard.classList.add('selected');
     }
 
     // Navegação entre telas
@@ -184,27 +260,30 @@ document.addEventListener('DOMContentLoaded', function () {
             screen.classList.remove('active');
         });
         screens[screenToShow].classList.add('active');
+        if (screenToShow === 'screen2') loadProducts();
+        if (screenToShow === 'screenChocolates') loadChocolates();
     }
 
-    // Event listeners para navegação
+    // NAVIGAÇÃO FLUXO COMPLETO
     startQuizBtn && startQuizBtn.addEventListener('click', () => navigateTo('screen2'));
     backToScreen1Btn && backToScreen1Btn.addEventListener('click', () => navigateTo('screen1'));
-    toScreen3Btn && toScreen3Btn.addEventListener('click', () => navigateTo('screen3'));
+    toScreenChocolatesBtn && toScreenChocolatesBtn.addEventListener('click', () => navigateTo('screenChocolates'));
     backToScreen2Btn && backToScreen2Btn.addEventListener('click', () => navigateTo('screen2'));
+    toScreen3Btn && toScreen3Btn.addEventListener('click', () => navigateTo('screen3'));
+    backToScreenChocolatesBtn && backToScreenChocolatesBtn.addEventListener('click', () => navigateTo('screenChocolates'));
     toScreen4Btn && toScreen4Btn.addEventListener('click', () => navigateTo('screen4'));
     backToScreen3Btn && backToScreen3Btn.addEventListener('click', () => navigateTo('screen3'));
     backToScreen4Btn && backToScreen4Btn.addEventListener('click', () => navigateTo('screen4'));
 
     // Sugestão: Botão finalizar só está ativo na tela de sugestão
     finishQuizBtn && finishQuizBtn.addEventListener('click', function () {
-        // Desabilita o botão imediatamente e muda o texto
         finishQuizBtn.disabled = true;
         finishQuizBtn.textContent = "Enviando...";
         finishQuizBtn.classList.add('disabled');
-
         userMessage = userMessageInput ? userMessageInput.value : '';
         const formData = {
             products: selectedProducts.join(', '),
+            chocolates: selectedChocolates.join(', '),
             city: selectedCity,
             store: selectedStore,
             whatsapp: whatsapp,
@@ -212,7 +291,6 @@ document.addEventListener('DOMContentLoaded', function () {
             timestamp: new Date().toISOString()
         };
         sendToAppSheet(formData);
-        // Não reabilite o botão, pois após o envio você vai para a tela de confirmação!
     });
 
     // Configuração do seletor de cidades/lojas
@@ -249,7 +327,6 @@ document.addEventListener('DOMContentLoaded', function () {
         validateWhatsappAndTerms();
     });
 
-    // Validação do termo de adesão
     termsCheckbox && termsCheckbox.addEventListener('change', validateWhatsappAndTerms);
 
     function validateWhatsappAndTerms() {
@@ -257,8 +334,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const termsChecked = termsCheckbox && termsCheckbox.checked;
         submitQuizBtn.disabled = !(whatsappValid && termsChecked);
     }
-
-    // Chama validação também ao carregar a página para garantir estado correto
     validateWhatsappAndTerms();
 
     // Botão "Enviar" da tela 4: só navega para a tela de sugestão, não envia dados ainda!
@@ -278,7 +353,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Função para enviar dados ao AppSheet
     function sendToAppSheet(data) {
-        const webhookUrl = 'https://script.google.com/macros/s/AKfycbxiRYejjQ6XB7pj46RePajI37Xcc2rAIMqciTy_lmkgGcm5bMdFfHiIwP1lhGUtuez6ew/exec';
+        const webhookUrl = 'https://script.google.com/macros/s/AKfycbzoM7MTCvKMhkuhdOYTCpaiJxtHj-se5myQfdoTakqQz6qXgvoJNiWXHL9sEkuV55kskQ/exec';
         const formBody = Object.keys(data)
             .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
             .join('&');
@@ -296,12 +371,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ===================== TERMO DE ADESÃO - MODAL IFRAME =====================
-    console.log("teste");
-
     if (openTermoBtn && pdfModal && closeModalBtn) {
         openTermoBtn.onclick = function (e) {
             e.preventDefault();
-            console.log('Clique no termo de adesão!');
             pdfModal.classList.add('active');
             document.body.classList.add('modal-open');
         };
@@ -318,6 +390,8 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         console.warn('Elementos não encontrados:', openTermoBtn, pdfModal, closeModalBtn);
     }
+
     // Inicializa o quiz
     loadProducts();
 });
+

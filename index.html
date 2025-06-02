@@ -31,8 +31,28 @@
                     <p class="info-extra">Selecione até 2 itens para presentear.</p>
 
                     <div class="navigation">
-                        <button id="backToScreen1" class="btn secondary"> < Voltar  </button>
-                        <button id="toScreen3" class="btn" disabled>Próximo ></button>
+                        <button id="backToScreen1" class="btn secondary">
+                            < Voltar </button>
+                                <button id="toScreenChocolates" class="btn" disabled>Próximo ></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Tela Sugestão de Chocolates -->
+        <div id="screenChocolates" class="screen">
+            <div class="content">
+                <div class="content-inner">
+                    <h3>Que tal incluir um chocolate no presente?</h3>
+                    <div class="products-grid" id="chocolatesContainer">
+                        <!-- 3 chocolates serão inseridos via JavaScript -->
+                    </div>
+                    <p class="info-extra" style="margin-top:20px;">
+                        Selecione até 1 item para completar.
+                        <strong>Opcional</strong>
+                    </p>
+                    <div class="navigation">
+                        <button id="backToScreen2" class="btn secondary">&lt; Voltar</button>
+                        <button id="toScreen3" class="btn">Próximo &gt;</button>
                     </div>
                 </div>
             </div>
@@ -76,7 +96,7 @@
                 <p class="info-extra">Vamos para o último passo...</p>
 
                 <div class="navigation">
-                    <button id="backToScreen2" class="btn secondary">
+                    <button id="backToScreenChocolates" class="btn secondary">
                         < Voltar </button>
                             <button id="toScreen4" class="btn" disabled>Próximo > </button>
                 </div>
@@ -98,7 +118,7 @@
                 <div class="form-group form-group--checkbox">
                     <input type="checkbox" id="terms" />
                     <label for="terms">
-                        Estou ciente do 
+                        Estou ciente do
                         <a href="#" class="termo-destaque" id="openTermo"> termo de adesão</a>
                     </label>
 
@@ -123,9 +143,11 @@
         <div id="suggestionScreen" class="screen">
             <div class="content">
                 <h2>Agora é por nossa conta!</h2>
-                <p class="info-extra">Vamos fechar o presente e deixar na loja na data programada, você não precisa preocupar com mais
+                <p class="info-extra">Vamos fechar o presente e deixar na loja na data programada, você não precisa
+                    preocupar com mais
                     nada.</p>
-                <p class="informe"><strong>Aguarde o nosso contato até o dia 30/05 (Sexta-feira) por Whats App.</strong></p>
+                <p class="informe"><strong>Aguarde o nosso contato até o dia 06/06 (Quinta-Feira) por Whats App.</strong>
+                </p>
                 <br>
                 <p class="informes">Se quiser, pode deixar um recadinho para incluirmos...</p>
                 <div class="form-group">
