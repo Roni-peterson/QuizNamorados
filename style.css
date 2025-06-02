@@ -256,7 +256,7 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 50px;
+    padding: 10px;
     background-color: transparent;
 }
 
@@ -1002,52 +1002,40 @@ body.modal-open {
     }
 
     #screen2 .navigation {
-        flex-direction: column;
+        flex-direction: row;
     }
 
-    #screen2 #toScreen3 {
-        width: 300px;
+    #screen2 #toScreenChocolates {
+        width: 150px;
         height: 40px;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
         padding: 0;
+        font-size: 20px;
     }
 
     #screen2 #backToScreen1 {
-        width: 300px;
+        width: 150px;
         height: 40px;
         padding: 0;
-    }
-
-    #screen4 .content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center !important;
-        align-items: center;
-        width: 100% !important;
-        min-width: 0;
-        margin: 0 !important;
-        box-sizing: border-box;
-        padding: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        margin-top: 70px !important;
-        position: fixed;
+        margin-bottom: 20px;
+        font-size: 20px;
     }
 
     #screenChocolates {
+        justify-content: center;
+        align-items: center;
         width: 100vw;
         height: 100vh;
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        overflow: auto;
+        overflow: auto !important;
     }
 
     #screenChocolates .content {
-        display: flex;
         flex-direction: column;
         justify-content: center !important;
-        align-items: center;
+        align-items: center !important;
         width: 100% !important;
         min-width: 0;
         margin: 0 !important;

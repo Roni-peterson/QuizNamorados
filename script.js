@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Dados dos produtos
     const products = [
         { id: 1, desc: 'Kit Eudora Eau de Parfum 35ml + Hidratante Corporal', priceFrom: '183,99', priceTo: '149,00', image: 'images/produtos/produto1.png' },
-        { id: 2, desc: 'Perfume Paris Elysees Billion 100ml Exclusive Edition', priceFrom: ' 89,90 ', priceTo: ' 75,90 ', image: 'images/produtos/produto2.png' },
+        { id: 2, desc: 'Perfume Paris Elysees Billion 100 ml Exclusive Edition', priceFrom: ' 89,90 ', priceTo: ' 75,90 ', image: 'images/produtos/produto2.png' },
         { id: 3, desc: 'Mon Bourjois La Formidable Eau de Parfum', priceFrom: '114,00', priceTo: '95,90', image: 'images/produtos/produto3.png' },
         { id: 4, desc: 'Aparador de pelos WAHL Multigroomer Trim Total', priceFrom: '199,90', priceTo: '179,90', image: 'images/produtos/produto4.png' },
         { id: 5, desc: 'Kit Eudora Velvet Authentic 100ml + Máscara de Cílios', priceFrom: '162,99', priceTo: '129,90', image: 'images/produtos/produto5.png' },
