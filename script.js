@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: 2, desc: 'Perfume Paris Elysees Billion 100ml Exclusive Edition', priceFrom: ' 89,90 ', priceTo: ' 75,90 ', image: 'images/produtos/produto2.png' },
         { id: 3, desc: 'Mon Bourjois La Formidable Eau de Parfum', priceFrom: '114,00', priceTo: '95,90', image: 'images/produtos/produto3.png' },
         { id: 4, desc: 'Aparador de pelos WAHL Multigroomer Trim Total', priceFrom: '199,90', priceTo: '179,90', image: 'images/produtos/produto4.png' },
-        { id: 5, desc: 'Kit Eudora Velvet Authentic 100ml', priceFrom: '162,99', priceTo: '129,90', image: 'images/produtos/produto5.png' },
+        { id: 5, desc: 'Kit Eudora Velvet Authentic 100ml + Máscara de Cílios', priceFrom: '162,99', priceTo: '129,90', image: 'images/produtos/produto5.png' },
         { id: 6, desc: 'David Beckham Bold Instinct Eau de Parfum', priceFrom: '155,01', priceTo: '129,00', image: 'images/produtos/produto6.png' },
         { id: 7, desc: 'Copo Term Stanley 519ml Quencher', priceFrom: '269,90', priceTo: '229,00', image: 'images/produtos/produto7.png' },
         { id: 8, desc: 'Secador Gama New Lumina Therapy Biv', priceFrom: '471,99', priceTo: '399,00', image: 'images/produtos/produto8.png' }
@@ -140,18 +140,23 @@ document.addEventListener('DOMContentLoaded', function () {
     function loadProducts() {
         productsContainer.innerHTML = '';
         products.forEach(prod => {
-            const productHtml = `
-                <div class="product-card">
-                    <img src="${prod.image}" alt="${prod.desc}">
-                    <p class="product-desc">${prod.desc}</p>
-                    <div class="product-prices">
-                        <span class="price-de">de R$ ${prod.priceFrom}</span>
-                        <span class="price-por">por R$ ${prod.priceTo}</span>
-                    </div>
-                </div>
-            `;
-            productsContainer.innerHTML += productHtml;
+            const productCard = document.createElement('div');
+            productCard.className = 'product-card';
+            productCard.innerHTML = `
+            <img src="${prod.image}" alt="${prod.desc}">
+            <p class="product-desc">${prod.desc}</p>
+            <div class="product-prices">
+                <span class="price-de">de R$ ${prod.priceFrom}</span>
+                <span class="price-por">por R$ ${prod.priceTo}</span>
+            </div>
+        `;
+            productCard.addEventListener('click', function () {
+                toggleProductSelection(prod.id, productCard);
+            });
+            productsContainer.appendChild(productCard);
         });
+        // Desabilitar botão até seleção
+        toScreen3Btn.disabled = true;
     }
 
     // Alternar seleção de produto
@@ -169,7 +174,8 @@ document.addEventListener('DOMContentLoaded', function () {
             selectedProducts.splice(index, 1);
             productCard.classList.remove('selected');
         }
-        toScreen3Btn.disabled = selectedProducts.length === 0;
+        // Habilita botão só se há 1 ou 2 selecionados
+        toScreen3Btn.disabled = !(selectedProducts.length >= 1 && selectedProducts.length <= 2);
     }
 
     // Navegação entre telas

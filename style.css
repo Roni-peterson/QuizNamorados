@@ -947,7 +947,127 @@ body.modal-open {
         margin: 0 auto;
     }
 
+    #screen4 {
+        width: 100vw;
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        overflow: auto;
+    }
 
+    #screen4 .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center !important;
+        align-items: center;
+        width: 100% !important;
+        min-width: 0;
+        margin: 0 !important;
+        box-sizing: border-box;
+        padding: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        margin-top: 100px !important;
+        position: fixed;
+    }
 
+    #screen4 .content h2 {
+        margin-top: 30px !important;
+    }
+
+    #screen4 .pdf-modal {
+        margin-top: 0 !important;
+    }
+    #screen4 .subtitle{
+        margin-bottom: 2px !important;
+    }
+
+    #screen4 .info-extra{
+        margin-top: 2px !important;
+    }
+
+    #screen4 .form-group--checkbox {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0 !important;
+        /* Remove qualquer espaço entre checkbox e label */
+        margin-bottom: 0 !important;
+        margin-top: 0 !important;
+        /* Ajuste como preferir */
+    }
+
+    #screen4 .form-group--checkbox input[type="checkbox"] {
+        margin: 0 !important;
+        /* Remove espaço à esquerda */
+        margin-right: 0 !important;
+        /* Remove espaço à direita */
+        padding: 0 !important;
+        width: 22px;
+        height: 22px;
+        vertical-align: middle;
+        margin-bottom: 5px !important;
+    }
+
+    #screen4 .form-group--checkbox label {
+        margin: 0 !important;
+        padding: 0 !important;
+        font-weight: normal !important;
+        display: flex !important;
+        align-items: center !important;
+        font-size: 18px !important;
+        margin-bottom: 5px !important;
+        /* Menor para mobile */
+    }
+
+    #suggestionScreen {
+        width: 100vw;
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        overflow: auto;
+    }
+
+    #suggestionScreen .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center !important;
+        align-items: center;
+        width: 100% !important;
+        min-width: 0;
+        margin: 0 !important;
+        box-sizing: border-box;
+        padding: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        margin-top: 100px !important;
+        position: fixed;
+    }
+
+    #suggestionScreen h2{
+        font-size: 30px !important;
+        margin-top: 50px !important;
+    }
+    #suggestionScreen .info-extra{
+        font-size: 20px !important;
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+    }
+    #suggestionScreen .informe{
+        font-size: 18px !important;
+        margin-top: 10px !important;
+        margin-bottom: 0 !important;
+    }
+    #suggestionScreen .informes{
+        font-size: 22px !important;
+        margin-top: 0 !important;
+    }
+    #suggestionScreen .navigation{
+        margin-top: 0 !important;
+    }
+    #suggestionScreen .form-group{
+        margin-bottom: 25px !important;
+    }
 
 }
