@@ -921,13 +921,6 @@ body.modal-open {
 
 @media (max-width: 600px) {
 
-    body,
-    html {
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-    }
-
     /* Backgrounds mobile */
     #screen1 {
         background-image: url('images/mecanica1mobile.png') !important;
@@ -980,7 +973,7 @@ body.modal-open {
         height: 100%;
         padding: 0;
         background-color: transparent;
-        position: flex;
+        position: absolute;
     }
 
     .products-grid {
@@ -1062,7 +1055,7 @@ body.modal-open {
         padding: 0 !important;
         left: 0 !important;
         right: 0 !important;
-        position: flex;
+        position: absolute;
     }
 
     #screenChocolates h3 {
@@ -1268,7 +1261,7 @@ body.modal-open {
         align-items: center !important;
         gap: 0 !important;
         /* Remove qualquer espaço entre checkbox e label */
-        margin-bottom: 50px !important;
+        margin-bottom: 30px !important;
         margin-top: 0 !important;
         /* Ajuste como preferir */
     }
@@ -1282,7 +1275,7 @@ body.modal-open {
         width: 22px;
         height: 22px;
         vertical-align: middle;
-        margin-bottom: 50px !important;
+        margin-bottom: 30px !important;
     }
 
     #screen4 .form-group--checkbox label {
@@ -1292,7 +1285,7 @@ body.modal-open {
         display: flex !important;
         align-items: center !important;
         font-size: 18px !important;
-        margin-bottom: 50px !important;
+        margin-bottom: 30px !important;
         /* Menor para mobile */
     }
 
