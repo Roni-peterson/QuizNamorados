@@ -263,6 +263,14 @@ document.addEventListener('DOMContentLoaded', function () {
         screens[screenToShow].classList.add('active');
         if (screenToShow === 'screen2') loadProducts();
         if (screenToShow === 'screenChocolates') loadChocolates();
+
+        // Envia evento para o Google Analytics
+        if (typeof gtag === "function") {
+            gtag('event', 'tela_' + screenToShow, {
+                'event_category': 'navegacao',
+                'event_label': 'Usuário foi para ' + screenToShow
+            });
+        }
     }
 
     // NAVIGAÇÃO FLUXO COMPLETO
