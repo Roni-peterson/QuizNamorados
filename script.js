@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const storeSelect = document.getElementById('store');
     const whatsappInput = document.getElementById('whatsapp');
     const termsCheckbox = document.getElementById('terms');
+    const pickupDateSelect = document.getElementById('pickup-date');
 
     // Modal Termo de Adesão
     const openTermoBtn = document.getElementById('openTermo');
@@ -281,9 +282,11 @@ document.addEventListener('DOMContentLoaded', function () {
         finishQuizBtn.textContent = "Enviando...";
         finishQuizBtn.classList.add('disabled');
         userMessage = userMessageInput ? userMessageInput.value : '';
+        const pickupDate = pickupDateSelect ? pickupDateSelect.value : '';
         const formData = {
             products: selectedProducts.join(', '),
             chocolates: selectedChocolates.join(', '),
+            pickupDate: pickupDate,
             city: selectedCity,
             store: selectedStore,
             whatsapp: whatsapp,
@@ -292,15 +295,20 @@ document.addEventListener('DOMContentLoaded', function () {
         };
         sendToAppSheet(formData);
     });
+    function validateCityStoreDate() {
+        const cityOk = citySelect && citySelect.value;
+        const storeOk = storeSelect && storeSelect.value;
+        const dateOk = pickupDateSelect && pickupDateSelect.value;
+        toScreen4Btn.disabled = !(cityOk && storeOk && dateOk);
+    }
 
     // Configuração do seletor de cidades/lojas
     citySelect && citySelect.addEventListener('change', function () {
-        const city = this.value;
-        selectedCity = city;
+        selectedCity = this.value;
         storeSelect.innerHTML = '<option value="" selected disabled>Selecione uma loja</option>';
-        storeSelect.disabled = !city;
-        if (city) {
-            storesByCity[city].forEach(store => {
+        storeSelect.disabled = !this.value;
+        if (this.value) {
+            storesByCity[this.value].forEach(store => {
                 const option = document.createElement('option');
                 option.value = store;
                 option.textContent = store;
@@ -308,11 +316,16 @@ document.addEventListener('DOMContentLoaded', function () {
             });
             storeSelect.disabled = false;
         }
-        toScreen4Btn.disabled = !city;
+        selectedStore = '';
+        validateCityStoreDate();
     });
 
     storeSelect && storeSelect.addEventListener('change', function () {
         selectedStore = this.value;
+        validateCityStoreDate();
+    });
+    pickupDateSelect && pickupDateSelect.addEventListener('change', function () {
+        validateCityStoreDate();
     });
 
     // Validação do WhatsApp
@@ -353,7 +366,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Função para enviar dados ao AppSheet
     function sendToAppSheet(data) {
-        const webhookUrl = 'https://script.google.com/macros/s/AKfycbzoM7MTCvKMhkuhdOYTCpaiJxtHj-se5myQfdoTakqQz6qXgvoJNiWXHL9sEkuV55kskQ/exec';
+        const webhookUrl = 'https://script.google.com/macros/s/AKfycbyaN_S2v673P-EePMsHWuzwVCPMrxR7CMtWB8_INvZukHMoGEHVXWet9J_bMr2wUdqauw/exec';
         const formBody = Object.keys(data)
             .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
             .join('&');
